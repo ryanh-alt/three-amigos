@@ -13,7 +13,6 @@ test('Get html from url', async () => {
 });
 
 test('Error getting html', async () => {
-  const data = '<div></div>';
   const url = 'https://yahooooo.com';
   const scraper = new WebScraper();
   get.mockImplementationOnce(() => Promise.reject(new Error('Unknown error')));
