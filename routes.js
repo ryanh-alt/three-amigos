@@ -2,11 +2,11 @@ const WebScraper = require('./WebScraper');
 const scraper = new WebScraper();
 
 module.exports = (app) => {
-  app.get('/html/:url', (req, res) => {
+  app.get('/html', (req, res) => {
     scraper
-      .getHtml(req.params.url)
+      .getHtml(req.query.url)
       .then((html) => res.send(html))
-      .catch((err) => res.send(err));
+      .catch((err) => res.status(400).send('Bad Request'));
   });
 
   app.get('*', (req, res) => {

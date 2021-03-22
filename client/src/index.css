@@ -1,0 +1,41 @@
+body {
+  margin: 20px;
+}
+
+.html-textarea {
+  width: 100%;
+  resize: none;
+  background-color: #fff !important;
+}
+
+td p {
+  word-break: break-word;
+}
+
+#url-input {
+  max-width: 900px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#url-input:focus::placeholder {
+  color: transparent;
+}
+
+#url-form {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#url-table {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+#url-column {
+  width: 20%;
+}

@@ -8,15 +8,16 @@ describe('Basic express loading', () => {
   let server;
 
   beforeEach(() => {
-    server = require('../index');
+    server = require('../server');
   });
 
   afterEach(() => {
     server.close();
   });
 
-  test('responds to /html/:url', (done) => {
-    request(server).get('/html/https%3A%2F%2Fgoogle.com').expect(200, done);
+  test('responds to /html?url=', (done) => {
+    request(server).get('/html?url=https://google.com').expect(200, done);
+    request(server).get('/html?url=yahoo.com').expect(200, done);
   });
 
   test('404 everything else', (done) => {
