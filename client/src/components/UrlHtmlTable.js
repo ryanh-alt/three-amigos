@@ -1,7 +1,7 @@
 import React from 'react';
 import UrlHtmlRow from './UrlHtmlRow';
 
-const UrlHtmlTable = ({ userRequest }) => {
+const UrlHtmlTable = ({ urls }) => {
   return (
     <table id="url-table" className="table table-striped">
       <thead>
@@ -11,8 +11,8 @@ const UrlHtmlTable = ({ userRequest }) => {
         </tr>
       </thead>
       <tbody>
-        {userRequest.urls.map((url, index) => (
-          <UrlHtmlRow key={index + userRequest.time} url={url} />
+        {urls.map((url, index) => (
+          <UrlHtmlRow key={index} url={url} />
         ))}
       </tbody>
     </table>

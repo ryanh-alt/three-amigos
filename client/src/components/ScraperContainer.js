@@ -3,24 +3,18 @@ import UrlForm from './UrlForm';
 import UrlHtmlTable from './UrlHtmlTable';
 
 const ScraperContainer = () => {
-  const [userRequest, setUserRequest] = useState({
-    urls: [],
-    time: 0,
-  });
+  const [urls, setUrls] = useState([]);
 
   const handleSubmit = (val) => {
     if (val) {
-      setUserRequest({
-        urls: val.split(',').map((s) => s.trim()),
-        time: new Date().getTime(),
-      });
+      setUrls(val.split(',').map((s) => s.trim()));
     }
   };
 
   return (
     <div>
       <UrlForm handleSubmit={handleSubmit} />
-      <UrlHtmlTable userRequest={userRequest} />
+      <UrlHtmlTable urls={urls} />
     </div>
   );
 };

@@ -1,36 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ScraperAPI from '../utils/ScraperAPI';
-import LoadingSpinner from './LoadingSpinner';
-
-const initialState = { html: '', error: '' };
+import RequestColumn from './RequestColumn';
 
 const UrlHtmlRow = ({ url }) => {
-  const [request, setRequest] = useState(initialState);
-
-  useEffect(() => {
-    let mounted = true;
-    setRequest(initialState);
-
-    ScraperAPI.getHtml(url)
-      .then((html) => mounted && setRequest({ html }))
-      .catch(() => mounted && setRequest({ error: 'Something went wrong.' }));
-
-    return () => {
-      mounted = false;
-    };
-  }, [url]);
-
-  const isLoading = () => {
-    return !request.html && !request.error;
-  };
-
-  const renderHtml = () => {
-    return request.error ? (
-      <span className="text-danger">{request.error}</span>
-    ) : (
+  const renderHtml = (html) => {
+    return (
       <textarea
-        className="form-control html-textarea "
-        value={request.html}
+        className="form-control html-textarea"
+        value={html}
         rows="6"
         readOnly
       />
@@ -42,7 +19,11 @@ const UrlHtmlRow = ({ url }) => {
       <td>
         <p>{url}</p>
       </td>
-      <td>{isLoading() ? <LoadingSpinner /> : renderHtml()}</td>
+      <td>
+        <RequestColumn request={() => ScraperAPI.getHtml(url)}>
+          {renderHtml}
+        </RequestColumn>
+      </td>
     </tr>
   );
 };
