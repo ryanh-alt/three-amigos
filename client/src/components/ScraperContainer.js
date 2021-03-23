@@ -7,7 +7,12 @@ const ScraperContainer = () => {
 
   const handleSubmit = (val) => {
     if (val) {
-      setUrls(val.split(',').map((s) => s.trim()));
+      setUrls(
+        val
+          .split(',')
+          .map((s) => s.trim())
+          .filter((s) => s)
+      );
     }
   };
 
